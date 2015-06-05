@@ -1,2 +1,3 @@
 # sizeify-client
-Official clients for sizeify service
+
+Official clients for Sizeify B, an improved image resizing service
