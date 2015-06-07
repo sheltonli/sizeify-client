@@ -1,3 +1,6 @@
+var document = require('create-element-basic');
+var window = module.exports;
+
 ;(function(window,document,undefined){
 	"use strict";
 	var SIZEIFY_ENDPOINT = 'http://sizeifyb.sjc.io';
@@ -13,13 +16,12 @@
 		return r;
 	};
 	var resizetoIsSane = function(resizeto){
-		var reg = /^[whlspbg]\d{1,4}|\d{1,4}x\d{1,4}$/;
+		var reg = /^[whlspbgc]\d{1,4}|\d{1,4}x\d{1,4}$/;
 		var r = reg.test(resizeto);
 		return r;
 	};
-	window.sizeify = function(url,resizeto){
-		var parser,
-			r;
+	var main = function(url,resizeto){
+		var parser, r;
 		if (urlIsSane(url) && resizetoIsSane(resizeto)) {
 			parser = document.createElement('a');
 			parser.href = url;
@@ -35,6 +37,14 @@
 			return r;
 		} else {
 			throw new Error('Insane arguments');
+		}
+	};
+	main.endpoint = function(newendpoint){
+		if ( typeof newendpoint === "undefined" ) {
+			return SIZEIFY_ENDPOINT;
+		} else {
+			SIZEIFY_ENDPOINT = newendpoint;
+			return this;
 		}
 	};
 })(window,document);

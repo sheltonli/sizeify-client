@@ -1,0 +1,35 @@
+body {
+	background-color: #abc;
+	margin: 0 3em;
+	box-sizing: border-box;
+}
+
+h2 {
+	color: #060;
+}
+
+h2::before {
+	content: "expect: ";
+}
+
+section.test {
+	border-bottom: 3px dotted gray;
+	padding-bottom: 2em;
+}
+
+pre {
+	font-family: "Verdana";
+	font-size: small;
+	background-color: #eee;
+	border-radius: 9px;
+	border: 1px solid gray;
+	color: Brown;
+	padding: .5em;
+	overflow: hidden;
+	box-shadow: 3px 3px 10px rgba(0,66,99,0.3);
+}
+
+img {
+	zoom: .5;
+	border: 1px solid black;
+}
