@@ -8,9 +8,12 @@ Sizeify is an image resizing service. It takes the URL of an image, and a code r
 
 ## Architecture
 
-Depending on the amount of compression you want, you can use one of several endpoints, as described in Figure 1.
+Depending on the amount of compression you want, you can use one of several endpoints, as described here. The fourth enpoint is suitable for testing, and does no caching whatsoever.
 
 <img src="sizeify.architecture.jpg" alt="sizeify architecture" width="364" />
 
-The fourth enpoint is suitable for testing, and does no caching whatsoever.
+<style>
+h1 {color: purple}
+</style>
+
 
