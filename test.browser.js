@@ -58,6 +58,18 @@
 			"expect": "a PNG, width 1111"
 		},
 		{
+			"endpoint": "http://sizeifyb.sjc.io",
+			"source": "http://upload.wikimedia.org/wikipedia/commons/6/66/Alpha-P4S4_3D_spacefill.png",
+			"resizeto": "w700",
+			"expect": "an PNG with alpha"
+		},		
+		{
+			"endpoint": "http://sizeifyb-snow.sjc.io",
+			"source": "http://upload.wikimedia.org/wikipedia/commons/6/66/Alpha-P4S4_3D_spacefill.png",
+			"resizeto": "p350",
+			"expect": "an PNG with alpha, but rendered with white BG"
+		},
+		{
 			"source": "http://sizeify.passthru.b.sjc.io/http/net.nocookie.wikia.img1/w777/__cb20120811205503%2Fadventuretimewithfinnandjake%2Fimages%2Ff%2Ffc%2FS4_E18_Finn_weird.PNG",
 			"resizeto": "w1111",
 			"expect": "an error, because you cannot sizeify a sizeify URL"
@@ -65,7 +77,7 @@
 		{
 			"source": "http://www.swmania.com/data/MetaMirrorCache/xen.001phone.cn_UploadFiles_Files_6_8_985_324_000000.jpg.pagespeed.ic.L8X_cKFQpE%E2%80%8B.webp",
 			"resizeto": "w300",
-			"expect": "a WEBP file, width 300"
+			"expect": "a WEBP file, width 300 (not supported so error)"
 		},
 		{
 			"source": "http://iet.jrc.ec.europa.eu/energyefficiency/sites/energyefficiency/files/images/organisation/part_logo_superu.gif",
@@ -93,12 +105,15 @@
 		this.parentNode.querySelector('.imgprops').innerHTML = JSON.stringify(r,null,"  ");
 	};
 	var container = document.body;
-	sizeify.endpoint('http://sizeify.passthru.b.sjc.io');
-	document.title = 'testing sizeify ' + sizeify.endpoint();
+	document.title = 'testing sizeify';
 	document.getElementsByTagName('h1')[0].innerHTML = document.title;
 	groups.forEach(function(group,i){
 		var div = document.querySelector('#template').cloneNode(true);
-		group.surl = sizeify(group.source,group.resizeto);
+		if ('endpoint' in group) {
+			group.surl = sizeify(group.endpoint,group.source,group.resizeto);
+		} else {
+			group.surl = sizeify(group.source,group.resizeto);	
+		}
 		group.id = uniqueId();
 		group.n = i+1;
 		div.removeAttribute('hidden');
