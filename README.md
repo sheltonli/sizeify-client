@@ -1,14 +1,16 @@
 # sizeify-client
 
-Official clients for Sizeify B, an improved image resizing service
+Official clients for Sizeify B.
 
-## What is Sizeify?
+## What is Sizeify B?
 
-Sizeify is an image resizing service. It takes the URL of an image, and a code representing how it should be resized. It then caches and serves the image effiently from Edge locations.
+Sizeify is an image resizing service. It takes the URL of an image, and a code representing how it should be resized. It then caches (for a month) and serves the image effiently from Edge locations. It is a  useful tool for developers who wish to support designers who change their mind a lot.
+
+Sizeify A is crappy and should not be used. 
 
 ## How do you use sizeify?
 
-There are two ways to call sizeify:
+There are two ways:
 
 ```javascript
 sizeify($endpoint,$imageUrl,$resizeCode)
@@ -32,6 +34,7 @@ s300	| resizes the image along it's shortest dimension to 300.
 p110	| creates a square 110x110. White padding is used to maintain aspect ratio
 b110	| same, but with black padding
 g110	| same, but with gray padding
+c200	| creates a square 200x200, cropping the image to preserve aspect ratio
 
 ## What are the various endpoints?
 
@@ -47,3 +50,16 @@ sizeifyb-snow.sjc.io	| sizeify.origin.snow.b.sjc.io	| Medium compression. PNGs w
 Depending on the amount of compression you want, you can use one of several endpoints, as described here. The red images represent CDN distributions, and they are the official endpoints. The orange squares describe the origin servers. The fourth enpoint is suitable for testing. It bypasses the CDN altogether and does no caching.
 
 <img src="sizeify.architecture.jpg" alt="sizeify architecture" />
+
+## Advanced Usage
+
+In addition to supporting the GET method, appropriate for using directly in `<img src="#" />` tags, sizeify also supports:
+
+Verb | What it does | Why it could be useful
+--------- | ------------ | -------
+POST	| Creates the cache	| Useful in scripts that do not want to reveice binary (image) data in response. Will return appropriate HTTP status codes if there was an error
+HEAD	| Obtains meta information | Returns meta information of the object as an image (width,height,mime-type) and as a cache record (timestamp,TTL). HEAD returns 404 if the record does not exist. Note that GET actually creates an object if it can. This is not how REST usually works.
+DELETE (against a variant)*	| Deletes the object	| Deletes the object if it exists. This is not instant. It triggers a "cache invalidation" request that is executed eventually on the CDN. The corresponding object deletion on the origin server is takes place immediately, but clients will see stale data for several minutes.
+DELETE (against a folder)*	| Deletes all variants	| If you uploaded the wrong image and want to remove all traces, you want this.
+
+*NOTE: Deletes (and specifically cache invalidations) are expensive. The best way to handle new data is to upload it to new enpoints and create new records on sizeify. Old data will remove itself naturally after a month.
