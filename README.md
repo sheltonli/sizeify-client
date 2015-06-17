@@ -46,4 +46,4 @@ sizeifyb-snow.sjc.io	| sizeify.origin.snow.b.sjc.io	| Medium compression. PNGs w
 
 Depending on the amount of compression you want, you can use one of several endpoints, as described here. The red images represent CDN distributions, and they are the official endpoints. The orange squares describe the origin servers. The fourth enpoint is suitable for testing. It bypasses the CDN altogether and does no caching.
 
-<img src="sizeify.architecture.jpg" alt="sizeify architecture" width="364" />
+<img src="sizeify.architecture.jpg" alt="sizeify architecture" />
