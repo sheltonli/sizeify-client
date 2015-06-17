@@ -12,13 +12,13 @@ Sizeify A is crappy and should not be used.
 
 There are two ways:
 
-```javascript
+```
 sizeify($endpoint,$imageUrl,$resizeCode)
 ```
 
 or:
 
-```javascript
+```
 sizeify($imageUrl,$resizeCode)
 ```
 
