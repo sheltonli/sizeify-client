@@ -58,8 +58,8 @@ In addition to supporting the GET method, appropriate for using directly in `<im
 Verb | What it does | Why it could be useful
 --------- | ------------ | -------
 POST	| Creates the cache	| Useful in scripts that do not want to reveice binary (image) data in response. Will return appropriate HTTP status codes if there was an error
-HEAD	| Obtains meta information | Returns meta information of the object as an image (width,height,mime-type) and as a cache record (timestamp,TTL). HEAD returns 404 if the record does not exist. Note that GET actually creates an object if it can. This is not how REST usually works.
+HEAD	| Obtains meta information | Returns meta information of the object as an image (width,height,mime-type) and as a cache record (timestamp,TTL). HEAD returns 404 if the record does not exist, therefore HEAD has no side effects. GET, in contrast, creates records if they do not exist. It is important to note that this behaviour contravenes strict RESTful principals.
 DELETE (against a variant)*	| Deletes the object	| Deletes the object if it exists. This is not instant. It triggers a "cache invalidation" request that is executed eventually on the CDN. The corresponding object deletion on the origin server is takes place immediately, but clients will see stale data for several minutes.
 DELETE (against a folder)*	| Deletes all variants	| If you uploaded the wrong image and want to remove all traces, you want this.
 
-*NOTE: Deletes (and specifically cache invalidations) are expensive. The best way to handle new data is to upload it to new enpoints and create new records on sizeify. Old data will remove itself naturally after a month.
+*NOTE: [Deletes are expensive](https://twitter.com/codinghorror/status/506010907021828096). The best way to handle new data is to upload it to new enpoints and create new records on sizeify. Old data removes itself naturally after a month.
