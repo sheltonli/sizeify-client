@@ -1,16 +1,24 @@
-var document = require('create-element-basic');
-var globalobject = module.exports;
-
-;(function(globalobject,document,undefined){
+/**
+ * @description - creates a global function called sizeify that accepts either 2 or 3 arguments: [endpoint,url,resizeto] or [url,resizeto]
+ * @argument - string - endpoint - The sizeify service (optional)
+ * @argument - string - url - the URL of the source image
+ * @argument - string - resizeto - the special code that indicates desired image dimensions
+ * @returns - string - a url pointing to the resized image, or an error if one of the arguments was malformed
+ **/
+;(function(undefined){
 	"use strict";
-	var SIZEIFY_ENDPOINT = 'http://sizeifyb.sjc.io';
-	/**
-	 * @description - creates a global function called sizeify that accepts either 2 or 3 arguments: [endpoint,url,resizeto] or [url,resizeto]
-	 * @argument - string - endpoint - The sizeify service (optional)
-	 * @argument - string - url - the URL of the source image
-	 * @argument - string - resizeto - the special code that indicates desired image dimensions
-	 * @returns - string - a url pointing to the resized image, or an error if one of the arguments was malformed
-	 **/
+	//	duck-type for node / browser
+	if (typeof window === 'undefined') {
+		require('@sean9999/isomorph/window/document/createElement');
+		var publish = function(name,func){
+			module.exports = func;
+		};	
+	} else {
+		var publish = function(name,func){
+			window[name] = func;
+		};
+	}
+	const DEFAULT_ENDPOINT = 'http://sizeifyb.sjc.io';
 	var endpointIsSane = function(url) {
 		var reg = /^http[s]?:\/\/[\w\-_\.]/;
 		var r = reg.test(url);
@@ -27,7 +35,11 @@ var globalobject = module.exports;
 		return r;
 	};
 	var sizeify = function(arg1,arg2,arg3){
-		var url,resizeto,endpoint,parser,r;
+		var url,
+			resizeto,
+			endpoint = DEFAULT_ENDPOINT,
+			parser,
+			r;
 		switch (arguments.length) {
 			case 2:
 			if (urlIsSane(arg1) && resizetoIsSane(arg2)) {
@@ -39,7 +51,7 @@ var globalobject = module.exports;
 			break;
 			case 3:
 			if (endpointIsSane(arg1) && urlIsSane(arg2) && resizetoIsSane(arg3)) {
-				SIZEIFY_ENDPOINT = arg1;
+				endpoint = arg1;
 				url = arg2;
 				resizeto = arg3;
 			} else {
@@ -49,11 +61,10 @@ var globalobject = module.exports;
 			default:
 			throw new Error('Wrong number of arguments');		
 		}
-
 		if (urlIsSane(url) && resizetoIsSane(resizeto)) {
 			parser = document.createElement('a');
-			parser.href = url;
-			r = SIZEIFY_ENDPOINT +
+			parser.setAttribute('href',url);
+			r = endpoint +
 				'/' +
 				parser.protocol.replace(':','') + '/' +
 				parser.hostname.split('.').reverse().join('.') +
@@ -66,5 +77,7 @@ var globalobject = module.exports;
 			throw new Error('Insane arguments');
 		}
 	};
-	globalobject.sizeify = sizeify;
-})(window,document);
+	sizeify.errorUrl = DEFAULT_ENDPOINT + '/error?code=400';
+	sizeify.endpoint = DEFAULT_ENDPOINT;
+	publish('sizeify',sizeify);
+})();
