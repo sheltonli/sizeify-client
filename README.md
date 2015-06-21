@@ -12,6 +12,10 @@ Sizeify A is crappy and should not be used.
 
 Clone this repo and pull out the files you need, or:
 
+```html
+&lt;script src="http://sizeifyb.sjc.io/js/sizeiy.latest.js"&gt;&lt;/script&gt;
+```
+
 ```bash
 $ npm install @sean9999/sizeify-client
 ```
