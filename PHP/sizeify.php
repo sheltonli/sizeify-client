@@ -22,4 +22,3 @@ function sizeify($url,$resizeto) {
 	];
 	return implode('/',$r);
 }
-?>
