@@ -8,6 +8,26 @@ Sizeify is an image resizing service. It takes the URL of an image, and a code r
 
 Sizeify A is crappy and should not be used. 
 
+## Installation
+
+Clone this repo and pull out the files you need, or:
+
+```bash
+$ npm install @sean9999/sizeify-client
+```
+
+or:
+
+```bash
+$ bower install sizeify
+```
+
+or:
+
+```bash
+$ composer require sjc/sizeify
+```
+
 ## How do you use sizeify?
 
 There are two ways:
@@ -35,6 +55,8 @@ p110	| creates a square 110x110. White padding is used to maintain aspect ratio
 b110	| same, but with black padding
 g110	| same, but with gray padding
 c200	| creates a square 200x200, cropping the image to preserve aspect ratio
+
+Here is an Angular example: http://plnkr.co/edit/IM3xjJjErSfSYwenwott?p=preview
 
 ## What are the various endpoints?
 
