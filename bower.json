@@ -1,0 +1,28 @@
+{
+  "name": "sizeify",
+  "version": "0.0.1",
+  "homepage": "https://github.com/stjosephcontent/sizeify-client",
+  "authors": [
+    "Sean Macdonald <stuff@crazyhorsecoding.com>"
+  ],
+  "description": "quick and dirty server-side image resizing",
+  "main": "sizeify.js",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "image",
+    "resizing",
+    "serving",
+    "caching",
+    "CDN"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
