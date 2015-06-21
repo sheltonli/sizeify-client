@@ -8,7 +8,8 @@
   "description": "quick and dirty server-side image resizing",
   "main": "sizeify.js",
   "moduleType": [
-    "node"
+    "node",
+    "globals"
   ],
   "keywords": [
     "image",
@@ -20,9 +21,8 @@
   "license": "MIT",
   "ignore": [
     "**/.*",
+    "!js/",
     "node_modules",
     "bower_components",
-    "test",
-    "tests"
   ]
 }
