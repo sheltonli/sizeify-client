@@ -31,9 +31,16 @@ if (process.stdin.isTTY) {
 	process.stdin.setEncoding('utf8');
 	var stream = byline.createStream(process.stdin);
 	stream.on('readable', function() {
-		var line;
-		while (null !== (line = stream.read())) {
-		process.stdout.write(sizeify(line,'p300') + "\n");
+		var inline, outline, outchannel;
+		while (null !== (inline = stream.read())) {
+			try {
+				outline = sizeify(inline,'p555');
+				outchannel = process.stdout;
+			} catch(e) {
+				outline = "Sizeify Client " + e.toString();
+				outchannel = process.stderr;
+			}
+			outchannel.write(outline + "\n");
 		}
 	});
 	process.stdin.on('end', function() {

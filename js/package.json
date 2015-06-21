@@ -10,6 +10,7 @@
   "dependencies": {
     "@sean9999/isomorph": "^1.0.0",
     "byline": "^4.2.1",
+    "colors": "^1.1.2",
     "create-element-basic": "^0.1.0",
     "nomnom": "^1.8.1",
     "parseuri": "^0.0.4"
