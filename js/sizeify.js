@@ -7,24 +7,25 @@
  **/
 ;(function(undefined){
 	"use strict";
-	const DEFAULT_ENDPOINT = 'http://sizeifyb.sjc.io';
-	//	duck-type for moduleTypes
+	//	duck-type for node / browser
+	var publish;
 	if (typeof window === 'undefined') {
 		require('@sean9999/isomorph/window/document/createElement');
-		var publish = function(name,func){
+		publish = function(name,func){
 			module.exports = func;
 		};
-	} else if ("angular" in window)  {
-		angular.module('sizeify', []).filter('sizeify', function() {
+	} else if ("angular" in window) {
+		publish = angular.module('sizeify', []).filter('sizeify', function() {
 			return function(item,resizeto) {
 				return sizeify(item,resizeto);
 			};
 		});
 	} else {
-		var publish = function(name,func){
+		publish = function(name,func){
 			window[name] = func;
 		};
 	}
+	const DEFAULT_ENDPOINT = 'http://sizeifyb.sjc.io';
 	var endpointIsSane = function(url) {
 		var reg = /^http[s]?:\/\/[\w\-_\.]/;
 		var r = reg.test(url);
