@@ -1,6 +1,5 @@
 <?php
-function sizeify($url,$resizeto) {
-	$endpoint = 'http://sizeify.b.sjc.io';
+function sizeify($url,$resizeto,$enpoint='http://sizeify.b.sjc.io') {
 	$error_image = $endpoint.'/error?code=400';
 	if (filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_HOST_REQUIRED) === false) {
 		return $error_image;
