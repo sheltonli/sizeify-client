@@ -4,7 +4,7 @@ function sizeify($url,$resizeto,$endpoint='http://sizeifyb.sjc.io') {
 	if (filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_HOST_REQUIRED) === false) {
 		return $error_image;
 	}
-	if (!preg_match('/[whpgbsl]\d{1,4}|\d{1,4}x\d{1,4}|original|big/', $resizeto)) {
+	if (!preg_match('/[whpgbslc]\d{1,4}|\d{1,4}x\d{1,4}|original|big/', $resizeto)) {
 		return $error_image;
 	}
 	$u = parse_url($url);
