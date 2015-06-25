@@ -25,7 +25,6 @@
   "scripts": {
     "test": "jasmine-node spec"
   },
-  "readme": "README.md",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stjosephcontent/sizeify-client.git"
