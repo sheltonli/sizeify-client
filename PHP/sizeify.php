@@ -9,7 +9,7 @@ function sizeify($url,$resizeto,$endpoint='http://sizeifyb.sjc.io') {
 	}
 	$u = parse_url($url);
 	$p = substr($u['path'],1);
-	if ($u['query']) {
+	if (!empty($u['query'])) {
 		$p .= '?' . $u['query'];
 	}
 	$r = [
