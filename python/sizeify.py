@@ -1,5 +1,11 @@
-from urlparse import urlparse
-from urllib import quote
+try:
+	from urllib.parse import urlparse
+	from urllib.parse import quote
+	from urllib.request import pathname2url
+except ImportError:
+	from urllib import urlparse
+	from urllib import quote
+	from urllib import pathname2url
 import re
 
 endpoint = 'http://sizeifyb.sjc.io'
@@ -19,10 +25,11 @@ def resizeStringIsValid(resizeto):
 
 def url(sourceurl,resizeto):
 	u = urlparse(sourceurl)
+	safe_path = pathname2url(u.path.lstrip('/'));
 	if not urlIsValid(u) or not resizeStringIsValid(resizeto):
 		return badURL()
 	else:
 		reversehost = ".".join(reversed(u.netloc.split('.')))
-		encodedpath = quote(u.path.lstrip('/'),"")
+		encodedpath = quote(safe_path,"")
 		s = [ endpoint, u.scheme, reversehost, resizeto, encodedpath ]
 		return "/".join(s)
