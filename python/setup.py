@@ -7,7 +7,7 @@ setup(
 	author = "Sean Macdonald",
 	author_email = "sean@crazyhorsecoding.com",
 	url = "http://sizeifyb.sjc.io",
-	download_url = "https://github.com/stjosephcontent/sizeify-client/archive/v1.0.7.zip",
+	download_url = "https://github.com/stjosephcontent/sizeify-client/archive/v1.0.8.zip",
 	keywords = ["image", "resize", "cdn"],
 	classifiers = [
 		"Programming Language :: Python",

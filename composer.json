@@ -1,6 +1,6 @@
 {
     "name": "sjc/sizeify",
-    "version": "1.0.4",
+    "version": "1.0.8",
     "language": "php",
     "keywords": ["image","resizing","cdn"],
     "description": "a small client for sizeify, the image resizing service for developers who work with indecisive designers",
