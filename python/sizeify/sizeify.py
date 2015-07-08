@@ -3,7 +3,7 @@ try:
 	from urllib.parse import quote
 	from urllib.request import pathname2url
 except ImportError:
-	from urllib import urlparse
+	from urlparse import urlparse
 	from urllib import quote
 	from urllib import pathname2url
 import re
