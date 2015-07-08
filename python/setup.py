@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
 	name = "sizeify",
 	packages = ["sizeify"],
-	version = "1.0.7",
+	version = "1.0.8",
 	description = "official client for sizeify, the image resizing and hosting service",
 	author = "Sean Macdonald",
 	author_email = "sean@crazyhorsecoding.com",
